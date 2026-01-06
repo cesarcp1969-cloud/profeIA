@@ -1,0 +1,5 @@
+{
+  "name": "Asistente Pedagógico AI",
+  "description": "Una aplicación web para ayudar a los docentes a generar planes de clase, objetivos, actividades y rúbricas utilizando la IA de Gemini. Diseñada para ser minimalista, moderna y enfocada en la productividad.",
+  "requestFramePermissions": []
+}
