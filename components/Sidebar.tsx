@@ -7,8 +7,9 @@ interface SidebarProps {
 }
 
 const NavItem: React.FC<{
-  // FIX: Changed JSX.Element to React.ReactElement to resolve namespace issue.
-  icon: React.ReactElement;
+  // FIX: Changed icon prop type to be more specific for SVG elements. This allows adding a className prop via 
+  // cloneElement without TypeScript errors, ensuring type safety.
+  icon: React.ReactElement<React.SVGProps<SVGSVGElement>>;
   label: string;
   view: View;
   activeView: View;
@@ -18,10 +19,10 @@ const NavItem: React.FC<{
   return (
     <button
       onClick={() => onClick(view)}
-      className={`flex items-center w-full px-4 py-3 text-sm font-medium transition-colors duration-200 ease-in-out ${
+      className={`flex items-center w-full px-4 py-3 text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-light ${
         isActive
           ? 'bg-brand-primary text-white'
-          : 'text-gray-300 hover:bg-brand-dark hover:text-white'
+          : 'text-gray-300 hover:bg-brand-dark hover:text-white hover:translate-x-1'
       }`}
     >
       {React.cloneElement(icon, { className: 'h-5 w-5 mr-3' })}

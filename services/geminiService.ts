@@ -1,13 +1,7 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const API_KEY = process.env.API_KEY;
-
-if (!API_KEY) {
-  throw new Error("API_KEY environment variable not set");
-}
-
-const ai = new GoogleGenAI({ apiKey: API_KEY });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
 
 const generateContent = async (prompt: string): Promise<string> => {
   try {
@@ -15,14 +9,11 @@ const generateContent = async (prompt: string): Promise<string> => {
         model: 'gemini-3-flash-preview',
         contents: prompt,
     });
-    if (response.text) {
-        return response.text;
-    }
-    return "No se pudo generar una respuesta.";
-
+    return response.text ?? "No se pudo generar una respuesta.";
   } catch (error) {
     console.error("Error calling Gemini API:", error);
-    return "Ocurrió un error al contactar la IA. Por favor, revisa la consola para más detalles.";
+    // Re-throw the error to be handled by the calling function (e.g., a custom hook)
+    throw new Error("Ocurrió un error al contactar la IA.");
   }
 };
 

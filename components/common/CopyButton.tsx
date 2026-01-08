@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 interface CopyButtonProps {
@@ -18,7 +17,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({ textToCopy }) => {
   return (
     <button
       onClick={handleCopy}
-      className="absolute top-4 right-4 bg-gray-200 hover:bg-gray-300 text-gray-700 p-2 rounded-lg transition-colors"
+      className="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-700 p-2 rounded-full transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-secondary"
       aria-label="Copiar al portapapeles"
     >
       {copied ? (
